@@ -27,6 +27,11 @@ function UserProfileForm() {
             alert(
                 `Form Submitted Successfully!\n\nName: ${form.fullname}\nEmail: ${form.email}\nAge: ${form.age}`
             );
+            setForm({
+      fullname: "",
+      email: "",
+      age: ""
+    });
         } 
     //     else {
     // //   alert("Please fill all required fields correctly!");
