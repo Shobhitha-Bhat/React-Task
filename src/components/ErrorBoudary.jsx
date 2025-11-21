@@ -1,7 +1,9 @@
+import React from "react";
+
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { hasError: false };
+    this.state = { hasError: false, resetKey: 0 };
   }
 
   static getDerivedStateFromError(error) {
@@ -13,7 +15,7 @@ class ErrorBoundary extends React.Component {
   }
 
   resetError = () => {
-    this.setState({ hasError: false });
+    this.setState({ hasError: false, resetKey: this.state.resetKey + 1 });
   };
 
   render() {
@@ -25,13 +27,13 @@ class ErrorBoundary extends React.Component {
             onClick={this.resetError}
             style={{ padding: "0.5rem 1rem", cursor: "pointer" }}
           >
-            Go Back / Retry
+            Retry
           </button>
         </div>
       );
     }
 
-    return this.props.children;
+    return <React.Fragment key={this.state.resetKey}>{this.props.children}</React.Fragment>;
   }
 }
 
